@@ -32,8 +32,10 @@ async def main():
             tools = await mcp_server_client.list_tools()
             print(f"Tools: {tools}")
 
-            print("\n\nRunning a simple agent interaction...")
-            result = await Runner.run(assistant, "What is weather in Karachi?")
+            print("\n\nRunning a simple agent interaction...\n\n")
+            
+            user_input = input('User: ')
+            result = await Runner.run(assistant, user_input)
             print(f"\n\n[AGENT RESPONSE]: {result.final_output}")
 
         except Exception as e:

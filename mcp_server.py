@@ -3,7 +3,7 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP(name='hello-mcp', stateless_http=True)
 
 
-mcp.tool(name='Online_researcher', description="This tool searches online and return result")
+@mcp.tool(name='Online_researcher', description="This tool searches online and return result")
 def search_online(query: str) -> str:
     return f'Searching for {query}...'
 
