@@ -14,6 +14,7 @@ def read_file(path: str) -> str:
     except Exception as e:
         return f"Error: {e}"
 
+
 @mcp.tool(name="edit_file", description="Edit a local text file by appending or replacing content. Input the file path or filename in the current directory. Example: 'dummyfile.txt'. Whatever user gives filename, check for it in current directory only.")
 def edit_file(path: str, content: str, mode: str = "overwrite") -> str:
     """
@@ -32,7 +33,8 @@ def edit_file(path: str, content: str, mode: str = "overwrite") -> str:
             return f"Appended new content to '{path}'."
     except Exception as e:
         return f"Error editing file: {e}"
-    
+
+
 @mcp.tool(
     name="knowledge_lookup_about_rohaan", 
     description="Provides Rohaan's personal info: name, age, profession, skills, education, projects, hobbies. Use this tool to answer any questions about Rohaan."
