@@ -69,6 +69,33 @@ def knowledge_lookup(query: str) -> str:
     return "No data found about Rohaan."
 
 
+@mcp.tool(
+    name="get_product_price",
+    description="Retrieve the price of a product by its name."
+)
+def get_product_price(product_name: str) -> str:
+    import requests
+
+    try:
+        url = f"https://dummyjson.com/products/search?q={product_name}"
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+
+        if "products" not in data or not data["products"]:
+            return f"No product found for '{product_name}'."
+
+        product = data["products"][0]
+        title = product.get("title", "Unknown Product")
+        price = product.get("price", "Unknown Price")
+        availability = product.get("availabilityStatus", "Unknown")
+
+        return f"{title} costs ${price}. Availability: {availability}."
+
+    except Exception as e:
+        return f"Error fetching product price: {e}"
+
+
 
 
 mcp_app = mcp.streamable_http_app()
