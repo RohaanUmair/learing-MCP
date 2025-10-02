@@ -95,4 +95,4 @@ def get_product_price(product_name: str) -> str:
 
 
 
-mcp_app = mcp.streamable_http_app()
+app = mcp.streamable_http_app()
