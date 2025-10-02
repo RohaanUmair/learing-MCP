@@ -3,15 +3,10 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP(name='hello-mcp', stateless_http=True)
 
 
-@mcp.tool(name='Online_researcher', description="This tool searches online and return result")
-def search_online(query: str) -> str:
-    return f'Searching for {query}...'
-
-@mcp.tool()
-def get_weather(city: str) -> str:
-    return f'Weather in {city} is Sunny.'
-
-@mcp.tool(name="read_file", description="Read contents of a local text file. Input must be the full file path or a filename in the current directory.")
+@mcp.tool(
+    name="read_file",
+    description="Read contents of a local text file. Input the file path or filename in the current directory. Example: 'dummyfile.txt'. Whatever user gives filename, check for it in current directory only."
+)
 def read_file(path: str) -> str:
     try:
         with open(path, "r") as f:
@@ -19,7 +14,7 @@ def read_file(path: str) -> str:
     except Exception as e:
         return f"Error: {e}"
 
-@mcp.tool(name="edit_file", description="Edit a local text file by appending or replacing content")
+@mcp.tool(name="edit_file", description="Edit a local text file by appending or replacing content. Input the file path or filename in the current directory. Example: 'dummyfile.txt'. Whatever user gives filename, check for it in current directory only.")
 def edit_file(path: str, content: str, mode: str = "overwrite") -> str:
     """
     Edit a file with given content.
