@@ -37,6 +37,37 @@ def edit_file(path: str, content: str, mode: str = "overwrite") -> str:
             return f"Appended new content to '{path}'."
     except Exception as e:
         return f"Error editing file: {e}"
+    
+@mcp.tool(
+    name="knowledge_lookup_about_rohaan", 
+    description="Provides Rohaan's personal info: name, age, profession, skills, education, projects, hobbies. Use this tool to answer any questions about Rohaan."
+)
+def knowledge_lookup(query: str) -> str:
+    rohaan_data = {
+        "name": "Muhammad Rohaan Umair",
+        "age": "19",
+        "profession": "Full-stack Web Developer and AI Developer",
+        "skills": "MERN stack, Next.js, Express.js, MongoDB, React.js, Agentic AI, MCP",
+        "education": "Completed O-levels, currently Intermediate, studying at SMIT (Saylani Mass IT Training)",
+        "projects": "Recipe website, Movie website, Todo app, RAG chatbot with MCP integration",
+        "hobbies": "Problem-solving, AI experiments, building web apps"
+    }
+
+    query_lower = query.lower()
+    for key, value in rohaan_data.items():
+        if key in query_lower:
+            return value
+
+    if any(word in query_lower for word in ["rohaan", "about", "info", "details"]):
+        summary = (
+            f"{rohaan_data['name']}, age {rohaan_data['age']}, is a {rohaan_data['profession']}. "
+            f"Skills: {rohaan_data['skills']}. Education: {rohaan_data['education']}. "
+            f"Projects: {rohaan_data['projects']}. Hobbies: {rohaan_data['hobbies']}."
+        )
+        return summary
+
+    return "No data found about Rohaan."
+
 
 
 
