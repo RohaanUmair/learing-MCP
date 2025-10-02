@@ -19,6 +19,24 @@ def read_file(path: str) -> str:
     except Exception as e:
         return f"Error: {e}"
 
+@mcp.tool(name="edit_file", description="Edit a local text file by appending or replacing content")
+def edit_file(path: str, content: str, mode: str = "overwrite") -> str:
+    """
+    Edit a file with given content.
+    mode = "append" -> adds content at the end
+    mode = "overwrite" -> replaces entire file content
+    """
+    try:
+        if mode == "overwrite":
+            with open(path, "w") as f:
+                f.write(content)
+            return f"File '{path}' overwritten with new content."
+        else:  # append
+            with open(path, "a") as f:
+                f.write("\n" + content)
+            return f"Appended new content to '{path}'."
+    except Exception as e:
+        return f"Error editing file: {e}"
 
 
 
