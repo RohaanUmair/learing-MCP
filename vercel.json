@@ -1,8 +1,15 @@
 {
     "version": 2,
-    "functions": {
-        "main.py": {
-            "runtime": "python3.11"
+    "builds": [
+        {
+            "src": "mcp_server.py",
+            "use": "@vercel/python"
         }
-    }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "mcp_server.py"
+        }
+    ]
 }
